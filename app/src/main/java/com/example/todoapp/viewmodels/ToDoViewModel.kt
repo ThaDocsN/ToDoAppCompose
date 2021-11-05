@@ -14,6 +14,6 @@ class ToDoViewModel: ViewModel() {
     }
 
     fun removeItem(item: ToDoItem) {
-        // TODO: 11/5/21  
+        // TODO: 11/5/21
     }
 }
