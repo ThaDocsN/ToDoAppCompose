@@ -6,8 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.todoapp.ui.theme.ToDoAppTheme
 import com.example.todoapp.viewmodels.ToDoViewModel
@@ -23,7 +24,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
 
-                    // TODO: 11/5/21  
+                    TodoActivityScreen(viewModel = viewModel)
                 }
             }
         }
@@ -32,13 +33,16 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TodoActivityScreen(viewModel: ToDoViewModel) {
-    // TODO: 11/5/21  
-}
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ToDoAppTheme {
-        // TODO: 11/5/21  
-    }
+  //  val items: List<ToDoItem> by viewModel.todoItems.observeAsState(listOf())
+
+    ToDoScreen(
+        items = viewModel.todoItems,
+        currentlyEditing = viewModel.currentEditItem,
+        onAdd = viewModel::addItem,
+        onRemove = viewModel::removeItem,
+        onStartEditing = viewModel::onEditItemSelected,
+        onEditItemChange = viewModel::onEditItemChange,
+        onEditDone = viewModel::onEditDone
+    )
 }
