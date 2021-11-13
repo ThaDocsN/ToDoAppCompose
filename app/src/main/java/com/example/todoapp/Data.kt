@@ -13,11 +13,11 @@ import java.util.*
 
 data class ToDoItem(
     val task: String,
-    val icon: ToDoIcon = ToDoIcon.Default,
+    val icon: TodoIcon = TodoIcon.Default,
     val id: UUID = UUID.randomUUID()
 )
 
-enum class ToDoIcon(val imageVector:ImageVector, @StringRes val contentDescription: Int) {
+enum class TodoIcon(val imageVector:ImageVector, @StringRes val contentDescription: Int) {
 
     Square(Icons.Default.CropSquare, R.string.cd_expand),
     Done(Icons.Default.Done, R.string.cd_done),
